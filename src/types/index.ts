@@ -29,6 +29,8 @@ export type GolferFormType = {
     city:string,
     district:string,
     country:string,
+    password:string,
+    confirm_password:string
 }
 
 export type TeetimeType = {
