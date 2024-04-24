@@ -1,4 +1,4 @@
-import { TeetimeFormType, CategoryType } from "../types";
+import { TeetimeFormType} from "../types";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,12 +8,12 @@ import Form from 'react-bootstrap/Form';
 
 type TeetimeFormProps = {
     addNewTeetime: (data: TeetimeFormType) => void
-    flashMessage: (newMessage:string, newCategory:CategoryType) => void
-
+    // flashMessage: (newMessage:string, newCategory:CategoryType) => void
+// took out flash message to try to get it from the teetimes page
 }
 
 
-export default function TeetimeForm({addNewTeetime, flashMessage}: TeetimeFormProps) {
+export default function TeetimeForm({addNewTeetime}: TeetimeFormProps) {
 
     const [newTeetime, setNewTeetime] = useState<TeetimeFormType>({course_name: '', price: parseInt(''), teetime_date: '', teetime_time: '', space_remaining: parseInt('')});
 
@@ -24,7 +24,7 @@ export default function TeetimeForm({addNewTeetime, flashMessage}: TeetimeFormPr
     const handleFormSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         addNewTeetime(newTeetime)
-        flashMessage('Tee Time added!', 'success');
+        // flashMessage('Tee Time added!', 'success');
     }
 
   return (

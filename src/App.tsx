@@ -10,6 +10,7 @@ import SignUp from './views/SignUp';
 import Login from './views/Login';
 import EditTeetime from './views/EditTeetime';
 import Teetimes from './views/Teetimes';
+import Profile from './views/Profile';
 
 
 export default function App() {
@@ -71,6 +72,7 @@ export default function App() {
                     <Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logUserIn} /> } />
                     <Route path='/edit/:teetimeId' element={<EditTeetime flashMessage={flashMessage} currentUser={loggedInUser} />} />
                     <Route path='/teetimes' element={<Teetimes isLoggedIn={isLoggedIn} currentUser={loggedInUser} flashMessage={flashMessage} />}/>
+                    <Route path='/golfers/me' element={<Profile currentUser={loggedInUser!}/>} />
                 </Routes>
             </Container>
         </>

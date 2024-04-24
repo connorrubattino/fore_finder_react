@@ -54,6 +54,7 @@ async function login(username:string, password:string): Promise<APIResponse<Toke
     try{
         const response = await apiClientBasicAuth(username, password).get(tokenEndpoint)
         data = response.data
+        console.log(data)
     } catch(err){
         if (axios.isAxiosError(err)){
             error = err.response?.data.error

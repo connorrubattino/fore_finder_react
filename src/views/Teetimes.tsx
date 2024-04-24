@@ -30,7 +30,7 @@ export default function Teetimes({ isLoggedIn, currentUser, flashMessage }: Teet
             const response = await getAllTeetimes();
             if (response.data){
                 let teetimes = response.data;
-                teetimes.sort( (a, b) => (new Date(a.id) > new Date(b.id) ? -1 : 1) )
+                // teetimes.sort( (a, b) => (new Date(a.id) > new Date(b.id) ? -1 : 1) )
                 // unsure on sorting - just doing by most recent as of now
                 setTeetimes(teetimes)
             }
@@ -61,7 +61,7 @@ export default function Teetimes({ isLoggedIn, currentUser, flashMessage }: Teet
 
   return (
     <>
-        <h1 className="text-center m-5">{isLoggedIn && currentUser ? `Hello ${currentUser?.first_name}!` : 'Welcome to Fore Finer - Please Login or Sign Up!'}</h1>
+        <h1 className="text-center m-5">{isLoggedIn && currentUser ? `Hello ${currentUser?.first_name}!` : 'Welcome to Fore Fidner - Please Login or Sign Up!'}</h1>
         <Row>
             <Col xs={12} md={6}>
                 <Form.Control value={searchTerm} placeholder='Search Courses with Tee Times' onChange={handleInputChange}/>
@@ -73,8 +73,8 @@ export default function Teetimes({ isLoggedIn, currentUser, flashMessage }: Teet
             )
             }
         </Row>
-        { showForm && <TeetimeForm addNewTeetime={addNewTeetime} flashMessage={flashMessage}/> }
-        {teetimes.filter(p => p.course_name.toLowerCase().includes(searchTerm.toLowerCase())).map( t => <TeetimeCard key={t.course_name} teetime={t} currentUser={currentUser} /> )}
+        { showForm && <TeetimeForm addNewTeetime={addNewTeetime}/> }
+        {teetimes.filter(t => t.course_name.toLowerCase().includes(searchTerm.toLowerCase())).map( t => <TeetimeCard key={t.id} teetime={t} currentUser={currentUser} /> )}
             {/* changed above to  key={t.course_name} instead of key=t.id*/}
     </>
   )
