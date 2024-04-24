@@ -32,7 +32,7 @@ export default function Profile({ currentUser }: ProfileProps) {
                 <ListGroup.Item>Tees:           {currentUser?.tees || 'null'}</ListGroup.Item>
                 <ListGroup.Item>Phone:          {currentUser?.phone || 'null'}</ListGroup.Item>
             </ListGroup>
-            <Link to={`/edit/golfers/me`}><Button>Edit Profile</Button></Link>
+            <Link to={`/golfers/me/edit`}><Button>Edit Profile</Button></Link>
             {/* need to figure out LINKS!! */}
         </>
     )

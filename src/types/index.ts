@@ -16,8 +16,8 @@ export type GolferType = {
     smoker?:boolean,
     gambler?:boolean,
     music?:boolean,
-    tees?:boolean,
-    phone?:boolean
+    tees?:string,
+    phone?:string
 }
 
 export type GolferFormType = {
@@ -30,7 +30,16 @@ export type GolferFormType = {
     district:string,
     country:string,
     password:string,
-    confirm_password:string
+    confirm_password:string,
+    handicap?:number,
+    right_handed?:boolean,
+    alchohol?:boolean,
+    legal_drugs?:boolean,
+    smoker?:boolean,
+    gambler?:boolean,
+    music?:boolean,
+    tees?:string,
+    phone?:string
 }
 
 export type TeetimeType = {
