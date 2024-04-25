@@ -35,6 +35,8 @@ export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) 
                                     <ListGroup.Item>Date: {teetime.teetime_date}</ListGroup.Item>
                                     <ListGroup.Item>Time: {teetime.teetime_time}</ListGroup.Item>
                                     <ListGroup.Item>Space Remaining: {teetime.space_remaining}</ListGroup.Item>
+                                    <ListGroup.Item>Tee Time Owner: {teetime.golfer.first_name} {teetime.golfer.last_name}</ListGroup.Item>
+                                    <ListGroup.Item>Tee Time Vibes: Handicap: {teetime.golfer.handicap} | Alchohol: {teetime.golfer.alchohol} | Smoker: {teetime.golfer.smoker} | Gambler: {teetime.golfer.gambler} | Music: {teetime.golfer.music} | Tees: {teetime.golfer.tees} </ListGroup.Item>
                                 </ListGroup>
                                 <Card.Body>
                                 {currentUser?.golfer_id === teetime.golfer.golfer_id && (
