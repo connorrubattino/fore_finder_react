@@ -1,5 +1,5 @@
 export type GolferType = {
-    id:number,
+    golfer_id:number,
     token:string,
     first_name:string,
     last_name:string,
@@ -43,7 +43,7 @@ export type GolferFormType = {
 }
 
 export type TeetimeType = {
-    id:number,
+    teetime_id:number,
     course_name:string,
     price:number,
     teetime_date:string,

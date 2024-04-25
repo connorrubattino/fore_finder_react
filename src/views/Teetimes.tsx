@@ -74,8 +74,9 @@ export default function Teetimes({ isLoggedIn, currentUser, flashMessage }: Teet
             }
         </Row>
         { showForm && <TeetimeForm addNewTeetime={addNewTeetime}/> }
-        {teetimes.filter(t => t.course_name.toLowerCase().includes(searchTerm.toLowerCase())).map( t => <TeetimeCard key={t.id} teetime={t} currentUser={currentUser} /> )}
-            {/* changed above to  key={t.course_name} instead of key=t.id*/}
+        <Row className='me-5'>
+        {teetimes.filter(t => t.course_name.toLowerCase().includes(searchTerm.toLowerCase())).map( t => <Col key={t.course_name} xs={6} md={4} lg={3}> <TeetimeCard key={t.course_name} teetime={t} currentUser={currentUser} /></Col> )}
+        </Row>
     </>
   )
 }
