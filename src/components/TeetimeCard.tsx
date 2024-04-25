@@ -37,7 +37,7 @@ export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) 
                                     <ListGroup.Item>Space Remaining: {teetime.space_remaining}</ListGroup.Item>
                                 </ListGroup>
                                 <Card.Body>
-                                {currentUser?.golfer_id === teetime.golfer_id && (
+                                {currentUser?.golfer_id === teetime.golfer.golfer_id && (
                                     <Link to={`/edit/${teetime.teetime_id}`}><Button variant="warning">Edit Teetime</Button></Link>
                                 )}
                                     <Link className='ms-5' to={`/teetimes/${teetime.teetime_id}/golfer_comments`}><Button variant="success">Join In</Button></Link>

@@ -16,7 +16,7 @@ export default function Profile({ currentUser }: ProfileProps) {
     return (
         <>
             <ListGroup>
-                <ListGroup.Item>Id:             {currentUser?.id}</ListGroup.Item>
+                <ListGroup.Item>Id:             {currentUser?.golfer_id}</ListGroup.Item>
                 <ListGroup.Item>First Name:     {currentUser?.first_name}</ListGroup.Item>
                 <ListGroup.Item>Last Name:      {currentUser?.last_name} </ListGroup.Item>
                 <ListGroup.Item>Email:          {currentUser?.email} </ListGroup.Item>

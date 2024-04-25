@@ -2,11 +2,13 @@ import { GolferType, CategoryType, TeetimeType } from "../types";
 import { useState, useEffect } from 'react';
 import TeetimeCard from "../components/TeetimeCard";
 import { getMyTeetimes } from "../lib/apiWrapper";
+import Col from 'react-bootstrap/Col';
+
 
 
 type MyTeetimesProps = {
     isLoggedIn: boolean,
-    currentUser: GolferType | null,
+    currentUser: GolferType|null,
     flashMessage: (newMessage: string, newCategory: CategoryType) => void
 }
 
@@ -27,12 +29,15 @@ export default function MyTeetimes({ currentUser}: MyTeetimesProps) {
 
         fetchData();
     }, [])
+    
 
 
     return (
         <>
-            <h1 className='text-center' >My Teetimes</h1>
-            {teetimes.map((t) => (<TeetimeCard teetime={t} currentUser={currentUser} />))}
+            <h1 className='text-center text-white' >My Tee Times</h1>
+            {/* {teetimes.filter(t => t.golfer.golfer_id === currentUser!.golfer_id).map((t) => (<TeetimeCard teetime={t} currentUser={currentUser} />))} */}
+            {/* {teetimes.map((t) => (<TeetimeCard teetime={t} currentUser={currentUser} />))} */}
+            {teetimes.filter(t => t.golfer.golfer_id === currentUser!.golfer_id).map( t => <Col key={t.course_name} xs={6} md={4} lg={3}> <TeetimeCard key={t.course_name} teetime={t} currentUser={currentUser} /></Col> )}
         </>
     )
 }

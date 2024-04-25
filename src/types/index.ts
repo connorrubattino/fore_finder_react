@@ -50,7 +50,8 @@ export type TeetimeType = {
     teetime_time:string,
     space_remaining:number,
     golfer_id:number,
-    course_id:number
+    course_id:number,
+    golfer:GolferType
 }
 
 export type TeetimeFormType = {
@@ -67,4 +68,33 @@ export type CategoryType = 'primary' | 'secondary' | 'success' | 'danger' | 'war
 export type TokenType = {
     token:string,
     tokenExpiration:string
+}
+
+export type CommentFormType = {
+    body:string
+}
+
+export type CommentType = {
+    golfer_comment_id:number,
+    body:string,
+}
+
+export type CourseType = {
+    course_id:number,
+    course_name:string,
+    address:string,
+    city:string,
+    district:string,
+    country:string,
+    par:string
+}
+
+export type CourseCardType = {
+    course_id:number,
+    course_name:string,
+    address:string,
+    city:string,
+    district:string,
+    country:string,
+    par:string
 }

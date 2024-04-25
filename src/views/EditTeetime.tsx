@@ -17,7 +17,7 @@ export default function EditTeetime({ flashMessage, currentUser }: EditTeetimePr
     const { teetimeId } = useParams();
     const navigate = useNavigate();
 
-    const [teetimeToEditData, setTeetimeToEditData] = useState<TeetimeFormType>({course_name: '', price: parseInt(''), teetime_date: '', teetime_time: '', space_remaining: parseInt('')});
+    const [teetimeToEditData, setTeetimeToEditData] = useState<TeetimeFormType>({course_name: '', price: parseInt(''), teetime_date: '', teetime_time: '', space_remaining: parseInt(''), course_id: parseInt('')});
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => setShowModal(true);
@@ -33,14 +33,14 @@ export default function EditTeetime({ flashMessage, currentUser }: EditTeetimePr
                     flashMessage('You do not have permission to edit this post', 'danger');
                     navigate('/')
                 } else {
-                    setTeetimeToEditData({course_name: teetime.course_name, price: teetime.price, teetime_date: teetime.teetime_date, teetime_time: teetime.teetime_time, space_remaining: teetime.space_remaining})
+                    setTeetimeToEditData({course_name: teetime.course_name, price: teetime.price, teetime_date: teetime.teetime_date, teetime_time: teetime.teetime_time, space_remaining: teetime.space_remaining, course_id:teetime.course_id})
                 }
             } else if(response.error){
                 flashMessage(response.error, 'danger');
-                navigate('/')
+                navigate('/teetimes')
             } else {
                 flashMessage("Something went wrong", 'warning')
-                navigate('/')
+                navigate('/teetimes')
             }
         }
 
@@ -59,7 +59,7 @@ export default function EditTeetime({ flashMessage, currentUser }: EditTeetimePr
             flashMessage(response.error, 'danger')
         } else {
             flashMessage(`Your Tee Time at ${response.data?.course_name} has been updated`, 'success');
-            navigate('/')
+            navigate('/teetimes')
         }
     }
 

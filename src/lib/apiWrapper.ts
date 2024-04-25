@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { GolferFormType, GolferType, TeetimeFormType, TeetimeType, TokenType } from '../types';
+import { CourseType, GolferFormType, GolferType, TeetimeFormType, TeetimeType, TokenType } from '../types';
 
 
 const baseURL:string = 'https://fore-finder-flaskapi.onrender.com'
 const golferEndpoint:string = '/golfers'
 const tokenEndpoint:string = '/token'
 const teetimeEndpoint:string = '/teetimes'
+const courseEndpoint:string = '/courses'
 
 
 const apiClientNoAuth = () => axios.create({
@@ -135,7 +136,7 @@ async function getMyTeetimes(token:string): Promise<APIResponse<{'teetimes':Teet
     let data;
     let error;
     try{
-        const response = await apiClientTokenAuth(token).get(teetimeEndpoint);
+        const response = await apiClientTokenAuth(token).get(teetimeEndpoint + '/me');
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){
@@ -214,6 +215,22 @@ async function deleteTeetimeById(teetimeId:string|number, token:string): Promise
     return { data, error }
 }
 
+async function getAllCourses(): Promise<APIResponse<CourseType[]>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientNoAuth().get(courseEndpoint);
+        data = response.data
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.message
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return { data, error }
+}
+
 
 
 
@@ -229,6 +246,7 @@ export {
     getTeetimeById,
     editTeetimeById,
     deleteTeetimeById,
+    getAllCourses
 
 
 
