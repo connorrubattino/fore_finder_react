@@ -61,7 +61,7 @@ export default function Teetimes({ isLoggedIn, currentUser, flashMessage }: Teet
 
   return (
     <>
-        <h1 className="text-center m-5">{isLoggedIn && currentUser ? `Hello ${currentUser?.first_name}!` : 'Welcome to Fore Fidner - Please Login or Sign Up!'}</h1>
+        <h1 className="text-center text-white m-5">{isLoggedIn && currentUser ? `Hello ${currentUser?.first_name}!` : 'Welcome to Fore Fidner - Please Login or Sign Up!'}</h1>
         <Row>
             <Col xs={12} md={6}>
                 <Form.Control value={searchTerm} placeholder='Search Courses with Tee Times' onChange={handleInputChange}/>
