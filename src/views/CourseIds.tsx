@@ -36,7 +36,7 @@ export default function CourseIds({}: CourseIdsProps) {
   
     return (
     <>
-    <Container className="text-center text-white"  >
+    <Container className="text-center text-white mb-5 mt-5"  >
     <h1>Courses</h1>
     </Container>
     <Container className="text-center" >

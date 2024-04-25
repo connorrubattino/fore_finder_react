@@ -15,6 +15,7 @@ type ProfileProps = {
 export default function Profile({ currentUser }: ProfileProps) {
     return (
         <>
+            <h1 className='text-center text-white mb-5'>Your Account Info</h1>
             <ListGroup>
                 <ListGroup.Item>Id:             {currentUser?.golfer_id}</ListGroup.Item>
                 <ListGroup.Item>First Name:     {currentUser?.first_name}</ListGroup.Item>
@@ -39,7 +40,7 @@ export default function Profile({ currentUser }: ProfileProps) {
                 <Row>
                     <Col xs={12} sm={8} md={6} lg={4}>
                         <Link to={`/golfers/me/edit`}>
-                            <Button style={{ minWidth: '150px' }}>Edit Profile</Button>
+                            <Button style={{ minWidth: '350px' }}>Edit Profile</Button>
                         </Link>
                     </Col>
                 </Row>
