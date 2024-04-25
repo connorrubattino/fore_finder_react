@@ -3,11 +3,17 @@ import CourseCard from "../components/CourseCard";
 import { useState, useEffect } from "react";
 import { getAllCourses } from "../lib/apiWrapper";
 import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 type CourseIdsProps = {}
 export default function CourseIds({}: CourseIdsProps) {
   
     const [courses, setCourses] = useState<CourseType[]>([])
+
+    const [searchTerm, setSearchTerm] = useState('');
 
     // const [fetchCourseData, setFetchCourseData] = useState(true);
 
@@ -23,13 +29,24 @@ export default function CourseIds({}: CourseIdsProps) {
         fetchData();
     }, [])
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+    }
+
   
     return (
     <>
     <Container className="text-center text-white"  >
     <h1>Courses</h1>
     </Container>
-    {courses.map(c => <CourseCard key={c.course_id} course={c}/> )}
+    <Container className="text-center" >
+        <Row className="justify-content-center"> 
+            <Col xs={12} md={6} className="text-center"> 
+                <Form.Control className="w-100" value={searchTerm} placeholder='Search Courses with Tee Times' onChange={handleInputChange}/>
+            </Col>
+        </Row>    
+    </Container>
+    {courses.filter(c => c.course_name.toLowerCase().includes(searchTerm.toLowerCase())).map(c => <CourseCard key={c.course_name} course={c}/> )}
     </>
   )
 }
