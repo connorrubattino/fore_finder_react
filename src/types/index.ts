@@ -58,7 +58,8 @@ export type TeetimeFormType = {
     price:number,
     teetime_date:string,
     teetime_time:string,
-    space_remaining:number
+    space_remaining:number,
+    course_id:number
 }
 
 export type CategoryType = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark'

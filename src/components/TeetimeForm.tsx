@@ -15,7 +15,7 @@ type TeetimeFormProps = {
 
 export default function TeetimeForm({addNewTeetime}: TeetimeFormProps) {
 
-    const [newTeetime, setNewTeetime] = useState<TeetimeFormType>({course_name: '', price: parseInt(''), teetime_date: '', teetime_time: '', space_remaining: parseInt('')});
+    const [newTeetime, setNewTeetime] = useState<TeetimeFormType>({course_name: '', price: parseInt(''), teetime_date: '', teetime_time: '', space_remaining: parseInt(''), course_id: parseInt('')});
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setNewTeetime({...newTeetime, [event.target.name]:event.target.value })
@@ -35,6 +35,8 @@ export default function TeetimeForm({addNewTeetime}: TeetimeFormProps) {
                 <Form onSubmit={handleFormSubmit}>
                     <Form.Label>Course Name</Form.Label>
                     <Form.Control name='course_name' placeholder='Which course are you playing?' value={newTeetime.course_name} onChange={handleInputChange} />
+                    <Form.Label>Course ID</Form.Label>
+                    <Form.Control name='course_id' placeholder='What is the course ID?' value={newTeetime.course_id} onChange={handleInputChange} />
                     <Form.Label>Price</Form.Label>
                     <Form.Control name='price' placeholder='How much is the round? (Round to nearest dollar)' value={newTeetime.price} onChange={handleInputChange} />
                     <Form.Label>Date</Form.Label>
