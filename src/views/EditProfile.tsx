@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { CategoryType, GolferFormType } from '../types';
+import { CategoryType, GolferFormType} from '../types';
 
 type EditProfileProps = {
     logUserOut: () => void,
@@ -180,10 +180,10 @@ export default function EditProfile({ logUserOut, flashMessage }: EditProfilePro
 
                     <Row>
                         <Col>
-                            <Button className='w-50' type='submit' variant='outline-primary' >Update Profile</Button>
+                            <Button className='w-100' type='submit' variant='outline-primary' >Update Profile</Button>
                         </Col>
                         <Col>
-                            <Button className='w-50' variant='danger' onClick={openModal}>Delete Profile</Button>
+                            <Button className='w-100' variant='danger' onClick={openModal}>Delete Profile</Button>
                         </Col>
                     </Row>
                 </Form>

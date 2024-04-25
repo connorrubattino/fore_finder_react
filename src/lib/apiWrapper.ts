@@ -131,6 +131,22 @@ async function getAllTeetimes(): Promise<APIResponse<TeetimeType[]>> {
     return { data, error }
 }
 
+async function getMyTeetimes(token:string): Promise<APIResponse<{'teetimes':TeetimeType[]}> > { 
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).get(teetimeEndpoint);
+        data = response.data
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.message
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return { data, error }
+}
+
 
 async function createTeetime(token:string, teetimeData:TeetimeFormType): Promise<APIResponse<TeetimeType>> {
     let data;
@@ -208,6 +224,7 @@ export {
     editUser,
     deleteUser,
     getAllTeetimes,
+    getMyTeetimes,
     createTeetime,
     getTeetimeById,
     editTeetimeById,

@@ -23,7 +23,7 @@ export default function Navigation({isLoggedIn, logUserOut}: NavigationProps){
                     <>
                         <Nav.Link className='text-white' as={Link} to="/teetimes">Find Tee Times</Nav.Link>
                         {/* need to create route for just seeing own tee times */}
-                        <Nav.Link className='text-white' as={Link} to="?">My Tee Times</Nav.Link>
+                        <Nav.Link className='text-white' as={Link} to="/myteetimes">My Tee Times</Nav.Link>
                         <Nav.Link className='text-white' as={Link} to='/golfers/me'>My Profile</Nav.Link>
                         <Nav.Link className='text-white' as={Link} to='/' onClick={()=> logUserOut()}>Log Out</Nav.Link>
                     </>

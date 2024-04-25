@@ -2,6 +2,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { GolferType } from '../types';
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 type ProfileProps = {
@@ -32,7 +35,15 @@ export default function Profile({ currentUser }: ProfileProps) {
                 <ListGroup.Item>Tees:           {currentUser?.tees || 'null'}</ListGroup.Item>
                 <ListGroup.Item>Phone:          {currentUser?.phone || 'null'}</ListGroup.Item>
             </ListGroup>
-            <Link to={`/golfers/me/edit`}><Button>Edit Profile</Button></Link>
+            <Container className="d-flex justify-content-center align-items-center mt-3 mb-3">
+                <Row>
+                    <Col xs={12} sm={8} md={6} lg={4}>
+                        <Link to={`/golfers/me/edit`}>
+                            <Button style={{ minWidth: '150px' }}>Edit Profile</Button>
+                        </Link>
+                    </Col>
+                </Row>
+            </Container>
             {/* need to figure out LINKS!! */}
         </>
     )
