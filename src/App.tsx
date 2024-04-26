@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Navigation from "./components/Navigation";
 import { CategoryType, GolferType } from './types';
 import Home from "./views/Home";
-import { getMe } from './lib/apiWrapper';
+import { getMe} from './lib/apiWrapper';
 import AlertMessage from './components/AlertMessage';
 import SignUp from './views/SignUp';
 import Login from './views/Login';
@@ -14,6 +14,7 @@ import Profile from './views/Profile';
 import EditProfile from './views/EditProfile';
 import MyTeetimes from './views/MyTeetimes';
 import CourseIds from './views/CourseIds';
+import SingleTeetime from './views/SingleTeetime';
 
 
 export default function App() {
@@ -76,9 +77,10 @@ export default function App() {
                     <Route path='/edit/:teetimeId' element={<EditTeetime flashMessage={flashMessage} currentUser={loggedInUser} />} />
                     <Route path='/teetimes' element={<Teetimes isLoggedIn={isLoggedIn} currentUser={loggedInUser} flashMessage={flashMessage} />}/>
                     <Route path='/golfers/me' element={<Profile currentUser={loggedInUser!}/>} />
-                    <Route path='/golfers/me/edit' element={<EditProfile logUserOut={logUserOut} flashMessage={flashMessage}/>} />
+                    <Route path='/golfers/me/edit' element={<EditProfile logUserOut={logUserOut} flashMessage={flashMessage} currentUser={loggedInUser}/>} />
                     <Route path='/teetimes/me' element={<MyTeetimes isLoggedIn={isLoggedIn} flashMessage={flashMessage} currentUser={loggedInUser}/>}/>
                     <Route path='/courses' element={<CourseIds/>} />
+                    <Route path='/teetimes/:teetimeId' element={<SingleTeetime/>}/>
                 </Routes>
             </Container>
         </>

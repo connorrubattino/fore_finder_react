@@ -26,15 +26,15 @@ export default function Profile({ currentUser }: ProfileProps) {
                 <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>City:           {currentUser?.city}</ListGroup.Item>
                 <ListGroup.Item>District/State: {currentUser?.district}</ListGroup.Item>
                 <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Country:        {currentUser?.country}</ListGroup.Item>
-                <ListGroup.Item>Handicap:       {currentUser?.handicap || 'null'}</ListGroup.Item>
-                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Right Handed:   {currentUser?.right_handed || 'null'}</ListGroup.Item>
-                <ListGroup.Item>Alchohol:       {currentUser?.alchohol || 'null'}</ListGroup.Item>
-                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Legal Drugs:    {currentUser?.legal_drugs || 'null'}</ListGroup.Item>
-                <ListGroup.Item>Smoker:         {currentUser?.smoker || 'null'}</ListGroup.Item>
-                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Gambler:        {currentUser?.gambler || 'null'}</ListGroup.Item>
-                <ListGroup.Item>Music:          {currentUser?.music || 'null'}</ListGroup.Item>
-                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Tees:           {currentUser?.tees || 'null'}</ListGroup.Item>
-                <ListGroup.Item>Phone:          {currentUser?.phone || 'null'}</ListGroup.Item>
+                <ListGroup.Item>Handicap:       {currentUser?.handicap}</ListGroup.Item>
+                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Right Handed:   {currentUser?.right_handed ? 'yes' : 'no'}</ListGroup.Item>
+                <ListGroup.Item>alcohol:       {currentUser?.alcohol ? 'yes' : 'no'}</ListGroup.Item>
+                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Legal Drugs:    {currentUser?.legal_drugs ? 'yes' : 'no'}</ListGroup.Item>
+                <ListGroup.Item>Smoker:         {currentUser?.smoker ? 'yes' : 'no'}</ListGroup.Item>
+                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Gambler:        {currentUser?.gambler ? 'yes' : 'no'}</ListGroup.Item>
+                <ListGroup.Item>Music:          {currentUser?.music ? 'yes' : 'no'}</ListGroup.Item>
+                <ListGroup.Item style={{ backgroundColor: '#f0f9e8' }}>Tees:           {currentUser?.tees}</ListGroup.Item>
+                <ListGroup.Item>Phone:          {currentUser?.phone}</ListGroup.Item>
             </ListGroup>
             <Container className="d-flex justify-content-center align-items-center mt-3 mb-3">
                 <Row>

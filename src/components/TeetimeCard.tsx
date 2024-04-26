@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 
 type TeetimeCardProps = {
     teetime: TeetimeType,
-    currentUser: GolferType | null,
+    currentUser?: GolferType | null,
     // added ? above ====================================================
 }
 
@@ -36,13 +36,23 @@ export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) 
                                     <ListGroup.Item>Time: {teetime.teetime_time}</ListGroup.Item>
                                     <ListGroup.Item>Space Remaining: {teetime.space_remaining}</ListGroup.Item>
                                     <ListGroup.Item>Tee Time Owner: {teetime.golfer.first_name} {teetime.golfer.last_name}</ListGroup.Item>
-                                    <ListGroup.Item>Tee Time Vibes: Handicap: {teetime.golfer.handicap} | Alchohol: {teetime.golfer.alchohol} | Smoker: {teetime.golfer.smoker} | Gambler: {teetime.golfer.gambler} | Music: {teetime.golfer.music} | Tees: {teetime.golfer.tees} </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        Tee Time Vibes: 
+                                        Handicap: {teetime.golfer.handicap || 'No'} |
+                                        Alcohol: {teetime.golfer.alcohol || 'No'} | 
+                                        Smoker: {teetime.golfer.smoker || 'No'} | 
+                                        Gambler: {teetime.golfer.gambler || 'No'} | 
+                                        Music: {teetime.golfer.music || 'No'} | 
+                                        Tees: {teetime.golfer.tees || 'N/A'} 
+                                        </ListGroup.Item>
+                                    <ListGroup.Item>Comments: {teetime.golfer_comments.body}</ListGroup.Item>
+                                {/* maybe should be a map above to map thru the comments */}
                                 </ListGroup>
                                 <Card.Body>
                                 {currentUser?.golfer_id === teetime.golfer.golfer_id && (
                                     <Link to={`/edit/${teetime.teetime_id}`}><Button variant="warning">Edit Teetime</Button></Link>
                                 )}
-                                    <Link className='ms-5' to={`/teetimes/${teetime.teetime_id}/golfer_comments`}><Button variant="success">Join In</Button></Link>
+                                    <Link className='ms-5' to={`/teetimes/${teetime.teetime_id}`}><Button variant="success">Join In</Button></Link>
                                 </Card.Body>
                             </Card>
                         </Col>

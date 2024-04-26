@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CourseType, GolferFormType, GolferType, TeetimeFormType, TeetimeType, TokenType } from '../types';
+import { CommentFormType, CommentType, CourseType, GolferFormType, GolferType, TeetimeFormType, TeetimeType, TokenType } from '../types';
 
 
 const baseURL:string = 'https://fore-finder-flaskapi.onrender.com'
@@ -84,6 +84,7 @@ async function getMe(token:string): Promise<APIResponse<GolferType>> {
 }
 
 async function editUser(token:string, editedUserData:Partial<GolferType>): Promise <APIResponse<string>> {
+    console.log(editedUserData)
     let data;
     let error;
     try{
@@ -132,7 +133,7 @@ async function getAllTeetimes(): Promise<APIResponse<TeetimeType[]>> {
     return { data, error }
 }
 
-async function getMyTeetimes(token:string): Promise<APIResponse<{'teetimes':TeetimeType[]}> > { 
+async function getMyTeetimes(token:string): Promise<APIResponse<TeetimeType[]> > { 
     let data;
     let error;
     try{
@@ -231,6 +232,38 @@ async function getAllCourses(): Promise<APIResponse<CourseType[]>> {
     return { data, error }
 }
 
+async function createComment(token:string, teetimeId:string|number, commentData:CommentFormType): Promise<APIResponse<CommentType>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).post(teetimeEndpoint + '/' + teetimeId + 'golfer_comments', commentData)
+        data = response.data
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data.error
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return { data, error }
+}
+
+async function deleteCommentById(teetimeId:string|number, token:string, commentId:string|number): Promise<APIResponse<string>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).delete(teetimeEndpoint + '/' + teetimeId + '/golfer_comments' + '/' + commentId)
+        data = response.data.success
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data?.error || `Comment with ID ${commentId} does not exist`
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return { data, error }
+}
+
 
 
 
@@ -246,7 +279,10 @@ export {
     getTeetimeById,
     editTeetimeById,
     deleteTeetimeById,
-    getAllCourses
+    getAllCourses,
+    createComment,
+    deleteCommentById
+
 
 
 

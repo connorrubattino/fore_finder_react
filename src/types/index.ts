@@ -11,7 +11,7 @@ export type GolferType = {
     country:string,
     handicap?:number,
     right_handed?:boolean,
-    alchohol?:boolean,
+    alcohol?:boolean,
     legal_drugs?:boolean,
     smoker?:boolean,
     gambler?:boolean,
@@ -33,7 +33,7 @@ export type GolferFormType = {
     confirm_password:string,
     handicap?:number,
     right_handed?:boolean,
-    alchohol?:boolean,
+    alcohol?:boolean,
     legal_drugs?:boolean,
     smoker?:boolean,
     gambler?:boolean,
@@ -51,7 +51,8 @@ export type TeetimeType = {
     space_remaining:number,
     golfer_id:number,
     course_id:number,
-    golfer:GolferType
+    golfer:GolferType,
+    golfer_comments:CommentType
 }
 
 export type TeetimeFormType = {
@@ -67,7 +68,7 @@ export type CategoryType = 'primary' | 'secondary' | 'success' | 'danger' | 'war
 
 export type TokenType = {
     token:string,
-    tokenExpiration:string
+    tokenExp:string
 }
 
 export type CommentFormType = {
@@ -77,6 +78,7 @@ export type CommentFormType = {
 export type CommentType = {
     golfer_comment_id:number,
     body:string,
+    golfer: GolferType
 }
 
 export type CourseType = {

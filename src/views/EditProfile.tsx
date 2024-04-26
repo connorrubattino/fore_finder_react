@@ -8,15 +8,16 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { CategoryType, GolferFormType } from '../types';
+import { CategoryType, GolferFormType, GolferType } from '../types';
 
 type EditProfileProps = {
     logUserOut: () => void,
     flashMessage: (newMessage: string, newCategory: CategoryType) => void
+    currentUser: GolferType|null
 }
 
 
-export default function EditProfile({ logUserOut, flashMessage }: EditProfileProps) {
+export default function EditProfile({ logUserOut, flashMessage, currentUser }: EditProfileProps) {
 
     const navigate = useNavigate();
 
@@ -25,24 +26,24 @@ export default function EditProfile({ logUserOut, flashMessage }: EditProfilePro
     const closeModal = () => setShowModal(false);
 
     const [editGolferData, setEditGolferData] = useState<Partial<GolferFormType>>({
-        first_name: '',
-        last_name: '',
-        email: '',
-        username: '',
-        golfer_age: parseInt(''),
-        city: '',
-        district: '',
-        country: '',
+        first_name: currentUser?.first_name || '',
+        last_name: currentUser?.last_name || '',
+        email: currentUser?.email || '',
+        username: currentUser?.username || '',
+        golfer_age: currentUser?.golfer_age || 0,
+        city: currentUser?.city || '',
+        district: currentUser?.district || '',
+        country: currentUser?.country || '',
         password: '',
-        handicap: parseInt(''),
-        right_handed: true,
-        alchohol: false,
-        legal_drugs: false,
-        smoker: false,
-        gambler: false,
-        music: false,
-        tees: '',
-        phone: ''
+        handicap: currentUser?.handicap || 10,
+        right_handed: currentUser?.right_handed || false,
+        alcohol: currentUser?.alcohol || false,
+        legal_drugs: currentUser?.legal_drugs || false,
+        smoker: currentUser?.smoker || false,
+        gambler: currentUser?.gambler || false,
+        music: currentUser?.music || false,
+        tees: currentUser?.tees || '',
+        phone: currentUser?.phone || ''
     })
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +52,9 @@ export default function EditProfile({ logUserOut, flashMessage }: EditProfilePro
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        if (!editGolferData.password){
+            delete editGolferData.password
+        }
         let response = await editUser(localStorage.getItem("token")!, editGolferData);
         if (response.error) {
             flashMessage(response.error, 'danger');
@@ -122,13 +125,13 @@ export default function EditProfile({ logUserOut, flashMessage }: EditProfilePro
                             />
                         </Form.Group>
 
-                        <Form.Group controlId="alchohol" id='alchohol'>
+                        <Form.Group controlId="alcohol" id='alcohol'>
                             <Form.Check
-                                name='alchohol'
+                                name='alcohol'
                                 type="checkbox"
-                                label="Alchohol"
-                                checked={editGolferData.alchohol || false}
-                                onChange={(e) => setEditGolferData({ ...editGolferData, alchohol: e.target.checked })}
+                                label="alcohol"
+                                checked={editGolferData.alcohol || false}
+                                onChange={(e) => setEditGolferData({ ...editGolferData, alcohol: e.target.checked })}
                             />
                         </Form.Group>
 

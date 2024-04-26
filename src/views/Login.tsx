@@ -36,8 +36,9 @@ export default function Login({ flashMessage, logUserIn }: LoginProps) {
         if (response.error){
             flashMessage(response.error, 'danger')
         } else {
+            console.log(response.data)
             const token = response.data!.token;
-            const tokenExp = response.data!.tokenExpiration;
+            const tokenExp = response.data!.tokenExp;
             localStorage.setItem('token', token);
             localStorage.setItem('tokenExp', tokenExp);
             logUserIn();
