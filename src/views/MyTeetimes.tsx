@@ -40,7 +40,7 @@ export default function MyTeetimes({ currentUser}: MyTeetimesProps) {
             {/* {teetimes.filter(t => t.golfer.golfer_id === currentUser!.golfer_id).map((t) => (<TeetimeCard teetime={t} currentUser={currentUser} />))} */}
             {/* {teetimes.map((t) => (<TeetimeCard teetime={t} currentUser={currentUser} />))} */}
             <Row className='me-5'>
-                {myTeetimes.map( t => <Col key={t.course_name} xs={6} md={4} lg={3}> <TeetimeCard key={t.course_name} teetime={t} currentUser={currentUser} /></Col> )}
+                {myTeetimes.map( t => <Col key={t.course_name} xs={6} md={4} lg={3}> <TeetimeCard key={t.teetime_id} teetime={t} currentUser={currentUser} /></Col> )}
             </Row>
         </>
     )

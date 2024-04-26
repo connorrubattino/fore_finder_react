@@ -264,6 +264,22 @@ async function deleteCommentById(teetimeId:string|number, token:string, commentI
     return { data, error }
 }
 
+async function getAllComments(teetimeId:string|number): Promise<APIResponse<CommentType[]>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientNoAuth().get(teetimeEndpoint + '/' + teetimeId + '/golfer_comments');
+        data = response.data
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.message
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return { data, error }
+}
+
 
 
 
@@ -281,7 +297,8 @@ export {
     deleteTeetimeById,
     getAllCourses,
     createComment,
-    deleteCommentById
+    deleteCommentById,
+    getAllComments
 
 
 
