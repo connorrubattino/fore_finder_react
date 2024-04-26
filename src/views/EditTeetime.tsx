@@ -14,7 +14,7 @@ type EditTeetimeProps = {
 }
 
 export default function EditTeetime({ flashMessage, currentUser }: EditTeetimeProps) {
-    const { teetimeId } = useParams();
+    const { teetime_id } = useParams();
     const navigate = useNavigate();
 
     const [teetimeToEditData, setTeetimeToEditData] = useState<TeetimeFormType>({course_name: '', price: parseInt(''), teetime_date: '', teetime_time: '', space_remaining: parseInt(''), course_id: parseInt('')});
@@ -25,7 +25,7 @@ export default function EditTeetime({ flashMessage, currentUser }: EditTeetimePr
 
     useEffect( () => {
         async function getTeetime(){
-            let response = await getTeetimeById(teetimeId!)
+            let response = await getTeetimeById(teetime_id!)
             if (response.data){
                 const teetime = response.data
                 const currentUser = JSON.parse(localStorage.getItem('currentUser')|| '{}')
@@ -45,7 +45,7 @@ export default function EditTeetime({ flashMessage, currentUser }: EditTeetimePr
         }
 
         getTeetime()
-    }, [teetimeId, currentUser] )
+    }, [teetime_id, currentUser] )
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTeetimeToEditData({...teetimeToEditData, [event.target.name]:event.target.value })
@@ -54,7 +54,7 @@ export default function EditTeetime({ flashMessage, currentUser }: EditTeetimePr
     const handleFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         const token = localStorage.getItem('token') || ''
-        const response = await editTeetimeById(teetimeId!, token, teetimeToEditData);
+        const response = await editTeetimeById(teetime_id!, token, teetimeToEditData);
         if (response.error){
             flashMessage(response.error, 'danger')
         } else {
@@ -65,7 +65,7 @@ export default function EditTeetime({ flashMessage, currentUser }: EditTeetimePr
 
     const handleDeleteClick = async () => {
         const token = localStorage.getItem('token') || '';
-        const response = await deleteTeetimeById(teetimeId!, token);
+        const response = await deleteTeetimeById(teetime_id!, token);
         if (response.error){
             flashMessage(response.error, 'danger')
         } else {

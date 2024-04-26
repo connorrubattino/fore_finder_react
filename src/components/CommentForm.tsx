@@ -1,4 +1,4 @@
-import { CommentFormType} from "../types";
+import { CommentFormType, GolferType} from "../types";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -7,10 +7,10 @@ import Form from 'react-bootstrap/Form';
 
 
 type CommentFormProps = {
-
+    currentUser: GolferType
     addNewComment: (data: CommentFormType) => void
 }
-export default function CommentForm({ addNewComment, }: CommentFormProps) {
+export default function CommentForm({ addNewComment, currentUser}: CommentFormProps) {
 
     const [newComment, setNewComment] = useState<CommentFormType>({body: ''});
 
@@ -20,7 +20,8 @@ export default function CommentForm({ addNewComment, }: CommentFormProps) {
 
     const handleFormSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        addNewComment(newComment)
+        const commentWithUser = { ...newComment, golfer_id: currentUser.golfer_id };
+        addNewComment(commentWithUser)
     }
 
 

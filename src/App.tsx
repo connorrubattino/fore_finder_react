@@ -74,13 +74,13 @@ export default function App() {
                     <Route path='/' element={<Home/>} />
                     <Route path='/golfers' element={<SignUp flashMessage={flashMessage} />} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logUserIn} /> } />
-                    <Route path='/edit/:teetimeId' element={<EditTeetime flashMessage={flashMessage} currentUser={loggedInUser} />} />
+                    <Route path='/edit/:teetime_id' element={<EditTeetime flashMessage={flashMessage} currentUser={loggedInUser} />} />
                     <Route path='/teetimes' element={<Teetimes isLoggedIn={isLoggedIn} currentUser={loggedInUser} flashMessage={flashMessage} />}/>
                     <Route path='/golfers/me' element={<Profile currentUser={loggedInUser!}/>} />
                     <Route path='/golfers/me/edit' element={<EditProfile logUserOut={logUserOut} flashMessage={flashMessage} currentUser={loggedInUser}/>} />
                     <Route path='/teetimes/me' element={<MyTeetimes isLoggedIn={isLoggedIn} flashMessage={flashMessage} currentUser={loggedInUser}/>}/>
                     <Route path='/courses' element={<CourseIds/>} />
-                    <Route path='/teetimes/:teetimeId' element={<SingleTeetime/>}/>
+                    <Route path='/teetimes/:teetime_id' element={<SingleTeetime flashMessage={flashMessage} currentUser={loggedInUser} />}/>
                 </Routes>
             </Container>
         </>

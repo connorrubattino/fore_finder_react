@@ -63,7 +63,7 @@ export default function Login({ flashMessage, logUserIn }: LoginProps) {
                     <InputGroup.Text onClick={() => setSeePassword(!seePassword)}><i className={seePassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i></InputGroup.Text>
                 </InputGroup>
 
-                <Button type='submit' variant='outline-primary' className='w-100 mt-3'>Log In</Button>
+                <Button type='submit' variant='outline-success' className='w-100 mt-3'>Log In</Button>
             </Form>
         </Card.Body>
     </Card>

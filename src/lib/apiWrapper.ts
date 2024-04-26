@@ -167,15 +167,15 @@ async function createTeetime(token:string, teetimeData:TeetimeFormType): Promise
 }
 
 
-async function getTeetimeById(teetimeId:string|number): Promise<APIResponse<TeetimeType>> {
+async function getTeetimeById(teetime_id:string|number): Promise<APIResponse<TeetimeType>> {
     let data;
     let error;
     try{
-        const response = await apiClientNoAuth().get(teetimeEndpoint + '/' + teetimeId)
+        const response = await apiClientNoAuth().get(teetimeEndpoint + '/' + teetime_id)
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){
-            error = err.response?.data.error || `Tee Time with ID ${teetimeId} does not exist`
+            error = err.response?.data.error || `Tee Time with ID ${teetime_id} does not exist`
         } else {
             error = 'Something went wrong'
         }
@@ -184,15 +184,15 @@ async function getTeetimeById(teetimeId:string|number): Promise<APIResponse<Teet
 }
 
 
-async function editTeetimeById(teetimeId:string|number, token:string, editedTeetimeData:TeetimeFormType): Promise<APIResponse<TeetimeType>> {
+async function editTeetimeById(teetime_id:string|number, token:string, editedTeetimeData:TeetimeFormType): Promise<APIResponse<TeetimeType>> {
     let data;
     let error;
     try{
-        const response = await apiClientTokenAuth(token).put(teetimeEndpoint + '/' + teetimeId, editedTeetimeData)
+        const response = await apiClientTokenAuth(token).put(teetimeEndpoint + '/' + teetime_id, editedTeetimeData)
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){
-            error = err.response?.data?.error || `Tee Time with ID ${teetimeId} does not exist`
+            error = err.response?.data?.error || `Tee Time with ID ${teetime_id} does not exist`
         } else {
             error = 'Something went wrong'
         }
@@ -200,15 +200,15 @@ async function editTeetimeById(teetimeId:string|number, token:string, editedTeet
     return { data, error }
 }
 
-async function deleteTeetimeById(teetimeId:string|number, token:string): Promise<APIResponse<string>> {
+async function deleteTeetimeById(teetime_id:string|number, token:string): Promise<APIResponse<string>> {
     let data;
     let error;
     try{
-        const response = await apiClientTokenAuth(token).delete(teetimeEndpoint + '/' + teetimeId)
+        const response = await apiClientTokenAuth(token).delete(teetimeEndpoint + '/' + teetime_id)
         data = response.data.success
     } catch(err) {
         if (axios.isAxiosError(err)){
-            error = err.response?.data?.error || `Tee Time with ID ${teetimeId} does not exist`
+            error = err.response?.data?.error || `Tee Time with ID ${teetime_id} does not exist`
         } else {
             error = 'Something went wrong'
         }
@@ -232,11 +232,11 @@ async function getAllCourses(): Promise<APIResponse<CourseType[]>> {
     return { data, error }
 }
 
-async function createComment(token:string, teetimeId:string|number, commentData:CommentFormType): Promise<APIResponse<CommentType>> {
+async function createComment(token:string, teetime_id:string|number, commentData:CommentFormType): Promise<APIResponse<CommentType>> {
     let data;
     let error;
     try{
-        const response = await apiClientTokenAuth(token).post(teetimeEndpoint + '/' + teetimeId + 'golfer_comments', commentData)
+        const response = await apiClientTokenAuth(token).post(teetimeEndpoint + '/' + teetime_id + 'golfer_comments', commentData)
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){
@@ -248,11 +248,11 @@ async function createComment(token:string, teetimeId:string|number, commentData:
     return { data, error }
 }
 
-async function deleteCommentById(teetimeId:string|number, token:string, commentId:string|number): Promise<APIResponse<string>> {
+async function deleteCommentById(teetime_id:string|number, token:string, commentId:string|number): Promise<APIResponse<string>> {
     let data;
     let error;
     try{
-        const response = await apiClientTokenAuth(token).delete(teetimeEndpoint + '/' + teetimeId + '/golfer_comments' + '/' + commentId)
+        const response = await apiClientTokenAuth(token).delete(teetimeEndpoint + '/' + teetime_id + '/golfer_comments' + '/' + commentId)
         data = response.data.success
     } catch(err) {
         if (axios.isAxiosError(err)){
@@ -264,11 +264,11 @@ async function deleteCommentById(teetimeId:string|number, token:string, commentI
     return { data, error }
 }
 
-async function getAllComments(teetimeId:string|number): Promise<APIResponse<CommentType[]>> {
+async function getAllComments(teetime_id:string|number): Promise<APIResponse<CommentType[]>> {
     let data;
     let error;
     try{
-        const response = await apiClientNoAuth().get(teetimeEndpoint + '/' + teetimeId + '/golfer_comments');
+        const response = await apiClientNoAuth().get(teetimeEndpoint + '/' + teetime_id + '/golfer_comments');
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){

@@ -79,6 +79,8 @@ export type CommentType = {
     golfer_comment_id:number,
     body:string,
     golfer: GolferType
+    golfer_id:number,
+    teetime_id:number
 }
 
 export type CourseType = {
