@@ -1,43 +1,43 @@
-import { CommentFormType, GolferType} from "../types";
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
+// import { CommentFormType, GolferType} from "../types";
+// import { useState } from 'react';
+// import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
+// import Form from 'react-bootstrap/Form';
 
 
 
-type CommentFormProps = {
-    currentUser: GolferType
-    addNewComment: (data: CommentFormType) => void
-}
-export default function CommentForm({ addNewComment, currentUser}: CommentFormProps) {
+// type CommentFormProps = {
+//     currentUser: GolferType
+//     addNewComment: (data: CommentFormType) => void
+// }
+// export default function CommentForm({ addNewComment, currentUser}: CommentFormProps) {
 
-    const [newComment, setNewComment] = useState<CommentFormType>({body: ''});
+//     const [newComment, setNewComment] = useState<CommentFormType>({body: ''});
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setNewComment({...newComment, [event.target.name]:event.target.value })
-    }
+//     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//         setNewComment({...newComment, [event.target.name]:event.target.value })
+//     }
 
-    const handleFormSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-        const commentWithUser = { ...newComment, golfer_id: currentUser.golfer_id };
-        addNewComment(commentWithUser)
-    }
+//     const handleFormSubmit = (event: React.FormEvent) => {
+//         event.preventDefault();
+//         const commentWithUser = { ...newComment, golfer_id: currentUser.golfer_id };
+//         addNewComment(commentWithUser)
+//     }
 
 
-  return (
-    <>
-    <Card className='my-3'>
-            <Card.Body>
-                <h3 className="text-center">Create New Comment</h3>
-                <Form onSubmit={handleFormSubmit}>
-                    <Form.Label>Comment Below</Form.Label>
-                    <Form.Control name='body' placeholder='Comment here!' value={newComment.body} onChange={handleInputChange} />
-                    {/* should name be body or golfer_comment above */}
-                    <Button className='mt-3 w-100' variant='success' type='submit'>Comment!</Button>
-                </Form>
-            </Card.Body>
-        </Card>
-    </>
-  )
-}
+//   return (
+//     <>
+//     <Card className='my-3'>
+//             <Card.Body>
+//                 <h3 className="text-center">Create New Comment</h3>
+//                 <Form onSubmit={handleFormSubmit}>
+//                     <Form.Label>Comment Below</Form.Label>
+//                     <Form.Control name='body' placeholder='Comment here!' value={newComment.body} onChange={handleInputChange} />
+//                     {/* should name be body or golfer_comment above */}
+//                     <Button className='mt-3 w-100' variant='success' type='submit'>Comment!</Button>
+//                 </Form>
+//             </Card.Body>
+//         </Card>
+//     </>
+//   )
+// }

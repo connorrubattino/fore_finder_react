@@ -236,7 +236,7 @@ async function createComment(token:string, teetime_id:string|number, commentData
     let data;
     let error;
     try{
-        const response = await apiClientTokenAuth(token).post(teetimeEndpoint + '/' + teetime_id + 'golfer_comments', commentData)
+        const response = await apiClientTokenAuth(token).post(teetimeEndpoint + '/' + teetime_id + '/golfer_comments', commentData)
         data = response.data
     } catch(err) {
         if (axios.isAxiosError(err)){

@@ -45,7 +45,6 @@ export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) 
                                         Music: {teetime.golfer.music || 'No'} | 
                                         Tees: {teetime.golfer.tees || 'N/A'} 
                                         </ListGroup.Item>
-                                    <ListGroup.Item>Comments: {teetime.golfer_comments.body}</ListGroup.Item>
                                 {/* maybe should be a map above to map thru the comments */}
                                 </ListGroup>
                                 <Card.Body>

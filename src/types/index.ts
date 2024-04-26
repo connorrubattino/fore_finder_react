@@ -102,3 +102,7 @@ export type CourseCardType = {
     country:string,
     par:string
 }
+
+export type CommentListType = {
+    
+}
