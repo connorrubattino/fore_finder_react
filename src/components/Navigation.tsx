@@ -18,7 +18,7 @@ export default function Navigation({ isLoggedIn, logUserOut }: NavigationProps) 
                 {/* <Navbar.Brand className='text-white' as={Link} to='/'>Fore Finder</Navbar.Brand> */}
                 <Navbar.Brand as={Link} to='/'>
                     <img
-                        src= '/public/F-ff-logo-design-vector-Graphics-16738354-1-580x386.jpg'
+                        src= '/F-ff-logo-design-vector-Graphics-16738354-1-580x386.jpg'
                         width="50"
                         height="50"
                         className="d-inline-block align-top ms-3"
