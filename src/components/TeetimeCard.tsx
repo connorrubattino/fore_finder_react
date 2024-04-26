@@ -26,7 +26,7 @@ export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) 
                 <Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
                         <Col key={teetime.course_name}>
                             <Card className='m-5' style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src="/public/f256fa53f4a71faeafdc7d83ece05548-1.jpg" />
+                                <Card.Img variant="top" src="/f256fa53f4a71faeafdc7d83ece05548-1.jpg" />
                                 <Card.Body>
                                     <Card.Title>{teetime.course_name}</Card.Title>
                                 </Card.Body>
