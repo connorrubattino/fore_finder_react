@@ -60,7 +60,7 @@ export default function EditProfile({ logUserOut, flashMessage, currentUser }: E
             flashMessage(response.error, 'danger');
         } else {
             flashMessage("Golfer has been updated", 'success')
-            navigate('/golfers/me')
+            navigate('/teetimes')
         }
     }
 

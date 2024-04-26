@@ -13,7 +13,7 @@ import Container from 'react-bootstrap/Container';
 // import TeetimeForm from "../components/TeetimeForm";
 import { CategoryType, CommentFormType, TeetimeType, CommentType } from "../types";
 // import CommentForm from '../components/CommentForm';
-import { createComment, getAllComments, deleteCommentById, getTeetimeById } from '../lib/apiWrapper';
+import { createComment, deleteCommentById, getTeetimeById } from '../lib/apiWrapper';
 // import CommentForm from '../components/CommentForm';
 // import CommentList from '../components/CommentList';
 // import { CommentType } from '../types';
@@ -54,28 +54,23 @@ export default function SingleTeetime({ flashMessage, currentUser }: SingleTeeti
   }, [teetime_id, flashMessage, navigate]);
 
 
-  useEffect(() => {
-    async function getComments() {
-      try {
-        const response = await getAllComments(teetime_id!);
-        if (response.error) {
-          flashMessage('Error retrieving comments', 'warning');
-        } else {
-          setComments(response.data || []);
-        }
-      } catch (error) {
-        flashMessage('Something went wrong', 'warning');
-        navigate('/');
-      }
-    }
+  // useEffect(() => {
+  //   async function getComments() {
+  //     try {
+  //       const response = await getAllComments(teetime_id!);
+  //       if (response.error) {
+  //         flashMessage('Error retrieving comments', 'warning');
+  //       } else {
+  //         setComments(response.data || []);
+  //       }
+  //     } catch (error) {
+  //       flashMessage('Something went wrong', 'warning');
+  //       navigate('/');
+  //     }
+  //   }
 
-    getComments();
-  }, [teetime_id]);
-
-  // const handleFormSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const token = localStorage.getItem('token');
-  //   const response = await createComment(token, body, )
+  //   getComments();
+  // }, [teetime_id]);
 
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,6 +89,7 @@ export default function SingleTeetime({ flashMessage, currentUser }: SingleTeeti
         setComments(comments => [...comments.concat(response.data!)]);
         // Clear the input field
         setNewComment({ body: '' });
+        setShowForm(false);
       }
     } catch (error) {
       flashMessage('Error creating comments', 'warning');
@@ -103,10 +99,9 @@ export default function SingleTeetime({ flashMessage, currentUser }: SingleTeeti
 
 
   const handleDeleteComment = async (comment_id: number) => {
-
     try {
       const token = localStorage.getItem('token');
-      if (currentUser.golfer_id === comments.find(comment => comment.golfer_comment_id === comment_id)?.golfer_id) {
+      if (currentUser.golfer_id === teetime?.golfer_comments.find(comment => comment.golfer_comment_id === comment_id)?.golfer_id) {
         setComments(prevComments => prevComments.filter(comment => comment.golfer_comment_id !== comment_id));
         const response = await deleteCommentById(teetime_id!, token!, comment_id);
 
@@ -147,19 +142,21 @@ export default function SingleTeetime({ flashMessage, currentUser }: SingleTeeti
     <>
       <Container>
         {teetime_id &&
-          <Card className="text-center">
-            <Card.Header>{teetime?.teetime_date}  ||  {teetime?.teetime_time}  ||  ${teetime?.price}</Card.Header>
+          <Card>
+            <Card.Header style={{ backgroundColor: '#f0f9e8' }} className="text-center">{teetime?.teetime_date}  ||  {teetime?.teetime_time}  ||  ${teetime?.price}</Card.Header>
             <Card.Body>
-              <Card.Title>{teetime?.course_name}</Card.Title>
-              <Card.Text>
+              <Card.Title className="text-center">{teetime?.course_name}</Card.Title>
+              <Card.Text className="text-center">
                 Want to play? Only room for {teetime?.space_remaining} more!
               </Card.Text>
               {currentUser.golfer_id && (
                 <>
-                  <Button onClick={() => setShowForm(true)}>Add Comment</Button>
+                  <Container className="text-center">
+                    <Button className="justify-content-center" variant='success' onClick={() => setShowForm(true)}>Add Comment</Button>
+                  </Container>
                   {showForm &&
                     <Card className='my-3'>
-                      <Card.Body>
+                      <Card.Body style={{ backgroundColor: '#f0f9e8' }}>
                         <h3 className="text-center">Create New Comment</h3>
                         <Form onSubmit={handleFormSubmit}>
                           <Form.Label>Comment Below</Form.Label>
@@ -170,17 +167,65 @@ export default function SingleTeetime({ flashMessage, currentUser }: SingleTeeti
                       </Card.Body>
                     </Card>
                   }
+                  {teetime_id && comments.length > 0 && (
+                    <Card style={{ backgroundColor: '#f0f9e8' }} className="my-3">
+                      <Card.Body>
+                        <Card.Title className='text-center' >Comments</Card.Title>
+                        <ul key={teetime_id} className="list-group list-group-flush">
+                          {teetime?.golfer_comments.map(comment => (
+                            <li key={comment.golfer_id} className="list-group-item">
+                              <div>
+                                {comment.body ? (
+                                  <p>{comment.body}</p>
+                                ) : (
+                                  <p>No body available</p>
+                                )}
+                                <p>Posted by: {comment.golfer.first_name}</p>
+                                {comment.golfer_id === currentUser.golfer_id && (
+                                <Button onClick={() => handleDeleteComment(comment.golfer_comment_id)}>Delete</Button>
+                                )}
+                                </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </Card.Body>
+                    </Card>
+                  )}
                 </>
               )}
+              {/* {teetime_id && comments.length > 0 && (
+                    <Card style={{ backgroundColor: '#f0f9e8' }} className="my-3">
+                      <Card.Body>
+                        <Card.Title className='text-center' >Comments</Card.Title>
+                        <ul key={teetime_id} className="list-group list-group-flush">
+                          {teetime?.golfer_comments.map(comment => (
+                            <li key={comment.golfer_id} className="list-group-item">
+                              <div>
+                                {comment.body ? (
+                                  <p>{comment.body}</p>
+                                ) : (
+                                  <p>No body available</p>
+                                )}
+                                <p>Posted by: {comment.golfer.first_name}</p>
+                                {comment.golfer_id === currentUser.golfer_id && (
+                                <Button onClick={() => handleDeleteComment(comment.golfer_comment_id)}>Delete</Button>
+                                )}
+                                </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </Card.Body>
+                    </Card>
+                  )} */}
             </Card.Body>
           </Card>
         }
-        {teetime_id && comments.length > 0 && (
+        {/* {teetime_id && comments.length > 0 && (
           <Card className="my-3">
             <Card.Body>
               <Card.Title>Comments</Card.Title>
               <ul key={teetime_id} className="list-group list-group-flush">
-                {comments.map(comment => (
+                {teetime?.golfer_comments.map(comment => (
                   <li key={comment.golfer_comment_id} className="list-group-item">
                     <div>
                       {comment.body ? (
@@ -196,7 +241,7 @@ export default function SingleTeetime({ flashMessage, currentUser }: SingleTeeti
               </ul>
             </Card.Body>
           </Card>
-        )}
+        )} */}
       </Container>
 
     </>

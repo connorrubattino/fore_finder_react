@@ -52,7 +52,7 @@ export type TeetimeType = {
     golfer_id:number,
     course_id:number,
     golfer:GolferType,
-    golfer_comments:CommentType
+    golfer_comments:CommentType[];
 }
 
 export type TeetimeFormType = {
