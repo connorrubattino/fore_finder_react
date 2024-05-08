@@ -38,7 +38,7 @@ export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) 
                                     <ListGroup.Item>Tee Time Owner: {teetime.golfer.first_name} {teetime.golfer.last_name}</ListGroup.Item>
                                     <ListGroup.Item>
                                         Tee Time Vibes: 
-                                        Handicap: {teetime.golfer.handicap || 'No'} |
+                                        Handicap: {teetime.golfer.handicap || 'N/A'} |
                                         Alcohol: {teetime.golfer.alcohol || 'No'} | 
                                         Smoker: {teetime.golfer.smoker || 'No'} | 
                                         Gambler: {teetime.golfer.gambler || 'No'} | 
