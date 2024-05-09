@@ -19,6 +19,8 @@ type TeetimeCardProps = {
 
 export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) {
 
+    const isLoggedIn = !!localStorage.getItem('token');
+
 
     return (
         <>
@@ -51,7 +53,12 @@ export default function TeetimeCard({ teetime, currentUser }: TeetimeCardProps) 
                                 {currentUser?.golfer_id === teetime.golfer.golfer_id && (
                                     <Link to={`/edit/${teetime.teetime_id}`}><Button variant="warning">Edit Teetime</Button></Link>
                                 )}
+                                { isLoggedIn && (
                                     <Link className='ms-5' to={`/teetimes/${teetime.teetime_id}`}><Button variant="success">Join In</Button></Link>
+                                )}
+                                { !isLoggedIn && (
+                                    <h5 className='text-center text-danger' >Login/Sign Up to join in!</h5>
+                                )}
                                 </Card.Body>
                             </Card>
                         </Col>
