@@ -42,7 +42,7 @@ export default function CourseIds({}: CourseIdsProps) {
     <Container className="text-center" >
         <Row className="justify-content-center"> 
             <Col xs={12} md={6} className="text-center"> 
-                <Form.Control className="w-100" value={searchTerm} placeholder='Search Courses with Tee Times' onChange={handleInputChange}/>
+                <Form.Control className="w-100 text-center" value={searchTerm} placeholder='Search Courses with Tee Times' onChange={handleInputChange}/>
             </Col>
         </Row>    
     </Container>
