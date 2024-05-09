@@ -58,8 +58,8 @@ export default function SignUp({flashMessage}: SignUpProps) {
 
   return (
     <>
-            <h1 className="text-center m-5">Sign Up Here</h1>
-            <Card>
+            <h1 className="text-center text-white m-5">Sign Up Here</h1>
+            <Card className="mb-5">
                 <Card.Body>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Label htmlFor='firstName'>First Name</Form.Label>
